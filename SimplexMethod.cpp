@@ -70,16 +70,16 @@ void SimplexMethod::execute()
 {
 	complementMatrix();
 
-	std::cout << "Исходная матрица" << std::endl;
+	std::cout << "РСЃС…РѕРґРЅР°СЏ РјР°С‚СЂРёС†Р°" << std::endl;
 	printMatrix();
 
-	std::cout << std::endl << "Базисные переменные: " << std::endl;
+	std::cout << std::endl << "Р‘Р°Р·РёСЃРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ: " << std::endl;
 	for (std::size_t i = 0; i < basic_variables.size(); i++)
 		std::cout << "x_" << names_basic_variables[i] + 1 << " = " << basic_variables[i] << std::endl;
 
 	std::cout << std::endl;
 
-	std::cout << "Небазисные переменные: " << std::endl;
+	std::cout << "РќРµР±Р°Р·РёСЃРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ: " << std::endl;
 	for (std::size_t i = 0; i < target_variables.size(); i++)
 		std::cout << "x_" << names_target_variables[i] + 1 << " = " << target_variables[i] << std::endl;
 
@@ -87,16 +87,16 @@ void SimplexMethod::execute()
 	while (formationNewSimplexMatrix())
 	{
 		std::cout << std::endl;
-		std::cout << "Итерация " << i << std::endl;
+		std::cout << "РС‚РµСЂР°С†РёСЏ " << i << std::endl;
 		printMatrix();
 
-		std::cout << std::endl << "Базисные переменные: " << std::endl;
+		std::cout << std::endl << "Р‘Р°Р·РёСЃРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ: " << std::endl;
 		for (std::size_t i = 0; i < basic_variables.size(); i++)
 			std::cout << "x_" << names_basic_variables[i] + 1 << " = " << basic_variables[i] << std::endl;
 
 		std::cout << std::endl;
 
-		std::cout << "Небазисные переменные: " << std::endl;
+		std::cout << "РќРµР±Р°Р·РёСЃРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ: " << std::endl;
 		for (std::size_t i = 0; i < target_variables.size(); i++)
 			std::cout << "x_" << names_target_variables[i] + 1 << " = " << target_variables[i] << std::endl;
 
@@ -104,26 +104,26 @@ void SimplexMethod::execute()
 	}
 
 	std::cout << std::endl;
-	std::cout << "Итерация " << i << std::endl;
+	std::cout << "РС‚РµСЂР°С†РёСЏ " << i << std::endl;
 	printMatrix();
 
-	std::cout << std::endl << "Базисные переменные: " << std::endl;
+	std::cout << std::endl << "Р‘Р°Р·РёСЃРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ: " << std::endl;
 	for (std::size_t i = 0; i < basic_variables.size(); i++)
 		std::cout << "x_" << names_basic_variables[i] + 1 << " = " << basic_variables[i] << std::endl;
 
 	std::cout << std::endl;
 
-	std::cout << "Небазисные переменные: " << std::endl;
+	std::cout << "РќРµР±Р°Р·РёСЃРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ: " << std::endl;
 	for (std::size_t i = 0; i < target_variables.size(); i++)
 		std::cout << "x_" << names_target_variables[i] + 1 << " = " << target_variables[i] << std::endl;
 
-	std::cout << std::endl << "f-max = " << matrix.at(matrix.size() - 1).at(matrix.at(matrix.size() - 1).size() - 1) << " (через симплекс-матрицу)" << std::endl;
+	std::cout << std::endl << "f-max = " << matrix.at(matrix.size() - 1).at(matrix.at(matrix.size() - 1).size() - 1) << " (С‡РµСЂРµР· СЃРёРјРїР»РµРєСЃ-РјР°С‚СЂРёС†Сѓ)" << std::endl;
 	
 	std::vector<double> a_0{};
 	for (std::size_t row = 0; row < matrix.size() - 1; row++)
 		a_0.push_back(matrix[row][3]);
 
-	std::cout << "f-max = " << scalarProduct(basic_variables, a_0) << " (через скалярное произведение A0 на Cb)" << std::endl;
+	std::cout << "f-max = " << scalarProduct(basic_variables, a_0) << " (С‡РµСЂРµР· СЃРєР°Р»СЏСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ A0 РЅР° Cb)" << std::endl;
 
 }
 
@@ -165,12 +165,12 @@ int SimplexMethod::findsolutionRow(int index_resolution_col)
 
 bool SimplexMethod::formationNewSimplexMatrix()
 {
-	int resolution_col = findResolutionCol();				//Номер разрешающего столбца
-	int resolution_row = findsolutionRow(resolution_col);	//Номер разрешающей строки
+	int resolution_col = findResolutionCol();				//РќРѕРјРµСЂ СЂР°Р·СЂРµС€Р°СЋС‰РµРіРѕ СЃС‚РѕР»Р±С†Р°
+	int resolution_row = findsolutionRow(resolution_col);	//РќРѕРјРµСЂ СЂР°Р·СЂРµС€Р°СЋС‰РµР№ СЃС‚СЂРѕРєРё
 
 	std::cout << std::endl;
-	std::cout << "Разрешающий столбец: " << resolution_col << std::endl;
-	std::cout << "Разрешающая строка: " << resolution_row << std::endl;
+	std::cout << "Р Р°Р·СЂРµС€Р°СЋС‰РёР№ СЃС‚РѕР»Р±РµС†: " << resolution_col << std::endl;
+	std::cout << "Р Р°Р·СЂРµС€Р°СЋС‰Р°СЏ СЃС‚СЂРѕРєР°: " << resolution_row << std::endl;
 
 
 	if (resolution_row < 0 || resolution_row == -1)
@@ -179,32 +179,32 @@ bool SimplexMethod::formationNewSimplexMatrix()
 	//swap(target_variables.at(resolution_col), basic_variables.at(resolution_row));
 
 	//row col
-	std::pair<int, int> a_rs_coords(resolution_row, resolution_col); //Индекс разрешающего элемента;
+	std::pair<int, int> a_rs_coords(resolution_row, resolution_col); //РРЅРґРµРєСЃ СЂР°Р·СЂРµС€Р°СЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°;
 
-	//Расчет элементов по правилу прямоугольника (включая относительные оценки и значение целевой функции Q) - в самом начале, чтобы не хранить предыдущее состоянии элементов
+	//Р Р°СЃС‡РµС‚ СЌР»РµРјРµРЅС‚РѕРІ РїРѕ РїСЂР°РІРёР»Сѓ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° (РІРєР»СЋС‡Р°СЏ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Рµ РѕС†РµРЅРєРё Рё Р·РЅР°С‡РµРЅРёРµ С†РµР»РµРІРѕР№ С„СѓРЅРєС†РёРё Q) - РІ СЃР°РјРѕРј РЅР°С‡Р°Р»Рµ, С‡С‚РѕР±С‹ РЅРµ С…СЂР°РЅРёС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРё СЌР»РµРјРµРЅС‚РѕРІ
 	for (int row = 0; row < matrix.size(); row++)
 		for (int col = 0; col < matrix.at(row).size(); col++)
 			if (col != resolution_col && row != resolution_row)
 				matrix.at(row).at(col) = gaussianElimination(std::make_pair(row, col), a_rs_coords);
 
-	//Замена переменных вектора
+	//Р—Р°РјРµРЅР° РїРµСЂРµРјРµРЅРЅС‹С… РІРµРєС‚РѕСЂР°
 	swapValues(resolution_row, resolution_col);
 	swapNames(resolution_row, resolution_col);
 
-	//Элементы разрешающей строки делятся на разрешающий элемент
+	//Р­Р»РµРјРµРЅС‚С‹ СЂР°Р·СЂРµС€Р°СЋС‰РµР№ СЃС‚СЂРѕРєРё РґРµР»СЏС‚СЃСЏ РЅР° СЂР°Р·СЂРµС€Р°СЋС‰РёР№ СЌР»РµРјРµРЅС‚
 	for (int i = 0; i < matrix.at(resolution_row).size(); i++)
 		if (i != resolution_col)
 			matrix.at(resolution_row).at(i) = matrix.at(resolution_row).at(i) / matrix.at(a_rs_coords.first).at(a_rs_coords.second);
 
-	//Элементы разрешающего столбца делятся на разрешающий элемент и меняют знак
+	//Р­Р»РµРјРµРЅС‚С‹ СЂР°Р·СЂРµС€Р°СЋС‰РµРіРѕ СЃС‚РѕР»Р±С†Р° РґРµР»СЏС‚СЃСЏ РЅР° СЂР°Р·СЂРµС€Р°СЋС‰РёР№ СЌР»РµРјРµРЅС‚ Рё РјРµРЅСЏСЋС‚ Р·РЅР°Рє
 	for (int i = 0; i < matrix.size(); i++)
 		if (i != resolution_row)
 			matrix.at(i).at(resolution_col) = (-1) * (matrix.at(i).at(resolution_col) / matrix.at(a_rs_coords.first).at(a_rs_coords.second));
 
-	//Разрешающий элемент заменяется на обратный
+	//Р Р°Р·СЂРµС€Р°СЋС‰РёР№ СЌР»РµРјРµРЅС‚ Р·Р°РјРµРЅСЏРµС‚СЃСЏ РЅР° РѕР±СЂР°С‚РЅС‹Р№
 	matrix.at(a_rs_coords.first).at(a_rs_coords.second) = 1 / matrix.at(a_rs_coords.first).at(a_rs_coords.second);
 
-	//Условие выхода, true - есть отрицательные элементы
+	//РЈСЃР»РѕРІРёРµ РІС‹С…РѕРґР°, true - РµСЃС‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹
 	for (const auto& it : matrix.at(matrix.size() - 1))
 		if (it < 0)
 			return true;
